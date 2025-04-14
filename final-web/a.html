@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Upload</title>
+</head>
+<body>
+
+    <h2>Media Upload</h2>
+
+    <!-- Insert Media Form -->
+    <h3>Insert New Media</h3>
+    <form action="e.php" method="POST" enctype="multipart/form-data">
+        <label for="message">Message:</label><br>
+        <textarea name="message" id="message" rows="4" cols="50"></textarea><br><br>
+
+        <label for="image">Image:</label>
+        <input type="file" name="image" id="image"><br><br>
+
+        <label for="video">Video:</label>
+        <input type="file" name="video" id="video"><br><br>
+
+        <label for="file">File:</label>
+        <input type="file" name="file" id="file"><br><br>
+
+        <input type="submit" name="submit" value="Submit Media">
+    </form>
+
+    <hr>
+
+    <!-- Update Media Form -->
+    <h3>Update Media</h3>
+    <form action="e.php" method="POST" enctype="multipart/form-data">
+        <label for="id">Media ID to Update:</label>
+        <input type="number" name="id" id="id" required><br><br>
+
+        <label for="message">Updated Message:</label><br>
+        <textarea name="message" id="message" rows="4" cols="50"></textarea><br><br>
+
+        <label for="image">Image:</label>
+        <input type="file" name="image" id="image"><br><br>
+
+        <label for="video">Video:</label>
+        <input type="file" name="video" id="video"><br><br>
+
+        <label for="file">File:</label>
+        <input type="file" name="file" id="file"><br><br>
+
+        <input type="submit" name="update" value="Update Media">
+    </form>
+
+    <hr>
+
+    <!-- Delete Media Form -->
+    <h3>Delete Media</h3>
+    <form action="e.php" method="GET">
+        <label for="delete">Media ID to Delete:</label>
+        <input type="number" name="delete" id="delete" required><br><br>
+
+        <input type="submit" value="Delete Media">
+    </form>
+
+    <hr>
+
+    <!-- Display All Media Records -->
+    <h3>All Media Records</h3>
+    <?php
+    // Fetch all media records from the database
+    $sql = "SELECT * FROM media_messages ORDER BY created_at DESC";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            echo "<div>";
+            echo "<p>Message: " . htmlspecialchars($row['message']) . "</p>";
+            if ($row['image']) {
+                echo "<img src='" . htmlspecialchars($row['image']) . "' width='100'><br>";
+            }
+            if ($row['video']) {
+                echo "<video width='320' height='240' controls><source src='" . htmlspecialchars($row['video']) . "' type='video/mp4'></video><br>";
+            }
+            if ($row['file']) {
+                echo "<a href='" . htmlspecialchars($row['file']) . "' download>Download File</a><br>";
+            }
+            echo "<a href='e.php?delete=" . $row['id'] . "'>Delete</a> | <a href='edit_form.php?id=" . $row['id'] . "'>Edit</a>";
+            echo "</div><hr>";
+        }
+    } else {
+        echo "No media records found.";
+    }
+    ?>
+</body>
+</html>

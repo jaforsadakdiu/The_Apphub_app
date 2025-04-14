@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App Dashboard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Set a full-screen background image */
+    body {
+  font-family: Arial, sans-serif;
+  background-image: url('bannerweb.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Keep the background fixed when scrolling */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Header styles */
+header {
+  text-align: center;
+  color: white;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+header h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+header p {
+  font-size: 1.2rem;
+}
+
+/* Dashboard container */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-grow: 1; /* Allows content to fill available space */
+  z-index: 1;
+}
+
+/* Card styles */
+.card {
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+  text-align: center;
+  padding: 15px;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.card h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 15px 0;
+}
+
+.card button {
+  padding: 10px 15px;
+  font-size: 1rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card button:hover {
+  background-color: #45a049;
+}
+
+/* Footer styles */
+footer {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 20px 10px;
+  text-align: center;
+  position: relative;
+  width: 100%;
+  flex-shrink: 0;
+  margin-top: 300px; /* Ensure the footer stays at the bottom */
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+footer p {
+  margin: 10px 0;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 10px;
+  justify-content: center;
+}
+
+/* Footer Container */
+.footer-container {
+  display: flex;
+  justify-content: center; /* Centers the columns */
+  gap: 60px; /* Adds space between columns */
+  max-width: 1200px;
+  margin: 0 auto; /* Centers the footer on the page */
+}
+
+/* Each Column */
+.footer-column {
+  text-align: left; /* Aligns text to the left */
+}
+
+.footer-column h4 {
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase; /* Makes the headings uppercase */
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.footer-column ul {
+  list-style: none; /* Removes bullet points */
+  padding: 0;
+  margin: 0; /* Resets any margin */
+  text-align: left;
+}
+
+.footer-column ul li {
+  display: block; /* Ensures each list item is on a new line */
+  text-align: left;
+}
+
+.footer-column ul li a {
+  text-decoration: none; /* Removes underline from links */
+  color: #ffffff; /* White link color */
+  font-size: 14px; /* Font size for links */
+}
+
+.footer-column ul li a:hover {
+  text-decoration: underline; /* Underlines links on hover */
+}
+
+.footer ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: transparent; /* Footer background color */
+  display: block;
+  justify-content: space-between;
+  align-items: center;
+  border: none; /* No border on top and bottom */
+}
+
+.footer li {
+  display: inline-block;
+  border-right: none; /* No border between list items */
+}
+
+.footer li a {
+  display: block;
+  color: rgb(19, 12, 12);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.footer li a:hover {
+  text-decoration: underline;
+}
+
+/* Icon styling */
+.icon {
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+  transition: transform 0.3s;
+}
+
+.icon:hover {
+  transform: scale(1.2);
+}
+
+/* App links styling */
+.app-links {
+  font-size: 14px;
+}
+
+.app-links span {
+  font-style: normal;
+}
+
+.app-links .link {
+  color: #1e90ff;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.app-links .link:hover {
+  text-decoration: underline;
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+<header>
+  <h1><i class="fas fa-laptop" style="font-size: 36px; margin-right: 10px;"></i>Welcome to Apphub</h1>
+  <p>Let's Grow Together</p>
+</header>
+
+<!-- Navigation Bar -->
+<nav style="background: linear-gradient(45deg, #0066cc, #0099ff); padding: 12px 0; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);    display: flex;
+    margin-left: 250px; margin-right : 350px; border-radius: 30px;">
+  <ul style="list-style: none; display: flex; justify-content: center; margin: 0; padding: 0; align-items: center;">
+    <li style="margin: 0 20px;">
+      <a href="#chat-app" style="color: black; text-decoration: none; font-size: 18px; padding: 10px 20px; border-radius: 5px; transition: all 0.3s ease; font-weight: bold; text-transform: uppercase;">Science</a>
+    </li>
+    <li style="margin: 0 20px;">
+      <a href="#to-do-list" style="color: black; text-decoration: none; font-size: 18px; padding: 10px 20px; border-radius: 5px; transition: all 0.3s ease; font-weight: bold; text-transform: uppercase;">Web Development</a>
+    </li>
+    <li style="margin: 0 20px;">
+      <a href="#blog" style="color: black; text-decoration: none; font-size: 18px; padding: 10px 20px; border-radius: 5px; transition: all 0.3s ease; font-weight: bold; text-transform: uppercase;">Machine Learning</a>
+    </li>
+    <li style="margin: 0 20px;">
+      <a href="#admin-blog" style="color: black; text-decoration: none; font-size: 18px; padding: 10px 20px; border-radius: 5px; transition: all 0.3s ease; font-weight: bold; text-transform: uppercase;">Deep Learning</a>
+    </li>
+    <li style="margin: 0 20px;">
+      <a href="#calendar" style="color: black; text-decoration: none; font-size: 18px; padding: 10px 20px; border-radius: 5px; transition: all 0.3s ease; font-weight: bold; text-transform: uppercase;">Cryptography</a>
+    </li>
+  </ul>
+</nav>
+
+<style>
+  /* Hover effects for each link */
+  nav a:hover {
+    background-color: #ffffff;
+    color: #333;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: flex;
+    margin-left: 50px;
+  }
+
+  /* Active link style (optional) */
+  nav a.active {
+    background-color: #ff6600;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+</style>
+
+
+<br>
+<br>
+<br>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<div class="dashboard">
+  <!-- Chat App Card -->
+  <div class="card" id="chat-app" style="transition: background-color 0.3s, transform 0.3s; padding: 10px;">
+    <img src="chatapp1.jpg" alt="Chat App">
+    <h2>Chat App</h2>
+    <a href="http://localhost/messagin/view_restaurant.php"><i class="fas fa-comments" style="font-size: 24px;"></i></a>
+  </div>
+
+  <!-- To-Do List Card -->
+  <div class="card" id="to-do-list" style="transition: background-color 0.3s, transform 0.3s; padding: 10px;">
+    <img src="to1.jpg" alt="To Do List">
+    <h2>To Do List</h2>
+    <a href="http://localhost/messagin/tenida.php"><i class="fas fa-tasks" style="font-size: 24px;"></i></a>
+  </div>
+
+  <!-- Blog Card -->
+  <div class="card" id="blog" style="transition: background-color 0.3s, transform 0.3s; padding: 10px;">
+    <img src="blog1.jpg" alt="Blog">
+    <h2>Blog</h2>
+    <a href="http://localhost/lgsg/ty.php"><i class="fas fa-rss" style="font-size: 24px;"></i></a>
+  </div>
+
+  <!-- Admin Blog Publish Card -->
+  <div class="card" id="admin-blog" style="transition: background-color 0.3s, transform 0.3s; padding: 10px;">
+    <img src="admin1.jpg" alt="Admin Blog Publish">
+    <h2>Admin Blog Publish</h2>
+    <a href="http://localhost/lgsg/admin.php"><i class="fas fa-edit" style="font-size: 24px;"></i></a>
+  </div>
+
+  <!-- Calendar Card with Inline CSS -->
+  <div class="card" id="calendar" style="grid-column: span 4; text-align: center; margin: 0 auto; justify-content: center; align-items: center; transition: background-color 0.3s, transform 0.3s; padding: 20px; display:flex; ">
+    <img src="calender1.jpg" alt="Calendar">
+    <h2>Calendar</h2>
+    <a href="http://127.0.0.1:5500/calender.html"><i class="fas fa-calendar-alt" style="font-size: 24px;"></i></a>
+  </div>
+</div>
+
+<style>
+  .card:hover {
+    background-color: #f0f0f0; /* Change the background color on hover */
+    transform: scale(1.05); /* Make the card grow in size on hover */
+  }
+</style>
+
+
+<footer class="footer">
+  <div class="social-icons"  style="border-bottom: .5px solid #b2afaf; padding-bottom: 10px; margin-bottom: 20px;">
+    <a href="#" class="icon" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="#" class="icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="#" class="icon" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+    <a href="#" class="icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    <a href="#" class="icon" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    <a href="#" class="icon" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    <a href="#" class="icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <br>
+    <div class="app-links">
+      <br>
+      Get <span>The AppHub</span> app 
+      <a href="#" class="link">iOS</a> or 
+      <a href="#" class="link">Android</a>
+    </div>
+    
+    </div>
+    
+    <div class="footer-container" style="border-bottom: .5px solid #b2afaf; padding-bottom: 10px; margin-bottom: 20px;">
+      <!-- Column 1 -->
+      <div class="footer-column">
+        <h4 style="margin-left: 40px;">The Apphub section</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Reuse Our Content</a></li>
+          <li><a href="#">Subscribe</a></li>
+          <li><a href="#">Apphub Enterprise</a></li>
+          <li><a href="#">SecureDrop</a></li>
+        </ul>
+      </div>
+    
+      <!-- Column 2 -->
+      <div class="footer-column">
+        <h4 style="margin-left: 50px;">The Apphub Group</h4>
+        <ul>
+          <li><a href="#">AppHub Group</a></li>
+          <li><a href="#">AppHub Intelligence</a></li>
+          <li><a href="#">AppHub Impact</a></li>
+          <li><a href="#">AppHub Impact Events</a></li>
+          <li><a href="#">AppHub Education Courses</a></li>
+        </ul>
+      </div>
+    
+      <div class="footer-column">
+        <h4 style="margin-left: 40px;">Contact</h4>
+        <ul>
+          <li><a href="#">Help and Support</a></li>
+          <li><a href="#">Advertise</a></li>
+          <li><a href="#">Press Center</a></li>
+        </ul>
+      </div>
+    
+      <div class="footer-column">
+        <h4 style="margin-left: 40px;">Careers</h4>
+        <ul>
+          <li><a href="#">Work With Us</a></li>
+          <li><a href="#">Executive Jobs</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div style="display: flex; align-items: center; margin: 30px; margin-left: 250px;">
+      <p style="color: white; font-family: Arial, sans-serif; font-size: 12px; margin-right: 10px; margin-left: 250px;">
+        We use cookies and similar technologies to improve your experience and ensure that our website works correctly.
+      </p>
+      <a href="#">
+        <button style="color: white; background: none; border: 1px solid white; padding: 2px 6px; font-size: 12px; cursor: pointer; width: 80px; height: 30px;">
+          Manage
+        </button>
+      </a>
+    </div>
+    
+    <div style="display: flex; flex-direction: column; align-items: center; text-align: center; background-color: #070404; color: white; padding: 20px; font-family: Arial, sans-serif; font-size: 14px;">
+      <ul style="list-style: none; padding: 0; margin: 0 0 10px 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
+        <li style="display: inline;">
+          <a href="#" style="color: white; text-decoration: underline; display: inline-block;">Terms of Use</a>
+        </li>
+        <li style="display: inline;">
+          <a href="#" style="color: white; text-decoration: underline; display: inline-block;">Privacy</a>
+        </li>
+        <li style="display: inline;">
+          <a href="#" style="color: white; text-decoration: underline; display: inline-block;">Cookie Policy</a>
+        </li>
+        <li style="display: inline;">
+          <a href="#" style="color: white; text-decoration: underline; display: inline-block;">Accessibility</a>
+        </li>
+        <li style="display: inline;">
+          <a href="#" style="color: white; text-decoration: underline; display: inline-block;">Modern Slavery Statement</a>
+        </li>
+        <li style="display: inline;">
+          <a href="#" style="color: white; text-decoration: underline; display: inline-block;">Sitemap</a>
+        </li>
+        <li style="display: inline;">
+          <a href="#" style="color: white; text-decoration: underline; display: inline-block;">Your Data Rights</a>
+        </li>
+      </ul>
+      <p style="margin: 0; font-size: 12px; color: white;">
+        Copyright © The AppHub Limited 2025. All Rights Reserved.
+      </p>
+    </div>
+    </footer>
+    </footer>
+    
+
+
+
+
+
+  <script>
+    // Dummy functions to simulate opening each app
+    function openChatApp() {
+      alert('Opening Chat App...');
+    }
+
+    function openTodoList() {
+      alert('Opening To Do List...');
+    }
+
+    function openBlog() {
+      alert('Opening Blog...');
+    }
+
+    function openAdminBlog() {
+      alert('Opening Admin Blog Publish...');
+    }
+
+    function openCalendar() {
+      alert('Opening Calendar...');
+    }
+  </script>
+
+</body>
+</html>
